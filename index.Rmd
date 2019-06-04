@@ -1,8 +1,8 @@
 #Surface Air Temperature
 
-This is the outline that was used to shows the countries
+This is the outline that was used to shows the countries in the world
 
-![](CountryOutline.png)
+![](CountryOutline.png) 
 
 This is the coastal outlines of the countries
 
