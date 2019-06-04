@@ -1,18 +1,140 @@
 #Surface Air Temperature
 
-This is the outline that was used to shows the countries in the world
+This is the data used for the 1 x Co2
+```{r plot_data0}
 
-![](CountryOutline.png) 
+library(ggplot2)
+library(ncdf4)
+library(zoo)
+library(RColorBrewer)
+library(raster)
+library(rasterVis)
+library(sf)
+library(ncdf.tools)
+
+nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+#nc_path <- "/Users/bartlein/Projects/ESSD/data/nc_files/"
+nc_name <- "PMIP3_tas_1pctCO2_ltm_gcm_CMIP5_CCSM4_OA.nc"
+
+nc_file <- paste(nc_path, nc_name, sep="")
+
+sat <- raster(nc_file, varname = "tas_ltm")
+#sat
+
+sat2 <- rotate(sat)
+
+shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+```
+
+
+This is the data for the 4 x Co2
+```{r plot_data1}
+
+library(ggplot2)
+library(ncdf4)
+library(zoo)
+library(RColorBrewer)
+library(raster)
+library(rasterVis)
+library(sf)
+library(ncdf.tools)
+
+nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+#nc_path <- "/Users/bartlein/Projects/ESSD/data/nc_files/"
+nc_name <- "PMIP3_tas_abrupt4xCO2_ltm_gcm_CMIP5_CCSM4_OA.nc"
+
+nc_file <- paste(nc_path, nc_name, sep="")
+
+sat3 <- raster(nc_file, varname = "tas_ltm")
+#sat
+
+sat4 <- rotate(sat)
+
+shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+```
+
+
+
+This is the outline that was used to shows the countries in the world
+```{r plot_data2}
+
+shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+shp_name <- "ne_110m_admin_0_countries.shp"
+shp_file <- paste(shp_path, shp_name, sep="")
+world_shp <- read_sf(shp_file)
+world_outline <- as(st_geometry(world_shp), Class="Spatial")
+
+plot(world_outline, col="gray80", lwd=1)
+```
+
+
+
 
 This is the coastal outlines of the countries
+```{r plot_data3}
 
-![](CoastOutline.png)
+coast_shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
+coast_shp_name <- "ne_10m_coastline.shp"
+coast_shp_file <- paste(coast_shp_path, coast_shp_name, sep="")
+
+# read the shapefile
+coast_shp <- read_sf(coast_shp_file)
+coast_outline <- as(st_geometry(coast_shp), Class="Spatial")
+
+# plot the outline
+plot(coast_outline, col="gray50", lwd=1)
+```
+
+
 
 This is a Surface Air Temperature look at one percent Co2 levels
+```{r plot_data4}
 
-![](1pctCo2.png)
+mapTheme <- rasterTheme(region=rev(brewer.pal(8,"RdBu")))
+plt <- levelplot(sat2, margin=F, par.settings=mapTheme)
+plt + latticeExtra::layer(sp.lines(world_outline, col="gray30", lwd=0.5))
+```
+
+
 
 This is the monthly look at one percent Co2 SAT
+```{r plot_data5}
+
+SAT_tmp_ltm <- stack(nc_file, varname = "tas_ltm")
+SAT_tmp_ltm
+SAT_tmp_ltm <- rotate(SAT_tmp_ltm)
+SAT_tmp_ltm
+names(SAT_tmp_ltm) <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+
+# too big tp plot to RStudio's Plot window, so send to file:
+pngfile <- "SAT_tmp_ltm.png"
+png(pngfile, width=729, height=729) # open the file
+cutpts <- c(-50,-40,-30,-20,-10,0,10,20,30,40,50)
+plt <- levelplot(SAT_tmp_ltm , at=cutpts, cuts=11, pretty=T, 
+                 col.regions=rev((brewer.pal(10,"RdBu"))))
+plt + latticeExtra::layer(sp.lines(coast_outline, col="black", lwd=0.5))
+dev.off()
+```
+
 
 ![](SAT_tmp_ltm.png)
+```{r plot_data6}
+
+SAT_tmp_ltm2 <- stack(nc_file, varname = "tas_ltm")
+SAT_tmp_ltm2
+SAT_tmp_ltm2 <- rotate(SAT_tmp_ltm2)
+SAT_tmp_ltm2
+names(SAT_tmp_ltm2) <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+
+# too big tp plot to RStudio's Plot window, so send to file:
+
+pngfile <- "SAT2_tmp_ltm.png"
+png(pngfile, width=729, height=729) # open the file
+cutpts <- c(-50,-40,-30,-20,-10,0,10,20,30,40,50)
+plt <- levelplot(SAT_tmp_ltm2 , at=cutpts, cuts=11, pretty=T, 
+                 col.regions=rev((brewer.pal(10,"RdBu"))))
+plt + latticeExtra::layer(sp.lines(coast_outline, col="black", lwd=0.5))
+dev.off()
+```
+
 ![](SAT2_tmp_ltm.png)
