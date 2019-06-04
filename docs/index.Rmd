@@ -1,4 +1,4 @@
-#Alpha (AE/PE)
+#Surface Air Temperature
 
 Alpha (AE/PE) was read from "cru10min30_bio.nc" and contains: 
 
@@ -12,3 +12,7 @@ names       : Priestley.Taylor..alpha..parameter..AE.PE.
 zvar        : mipt  
 
 ![](alpha.png)
+
+
+data source: /Users/jacobmaurer/Documents/College/Geography490/Projects/geog490/PMIP3_tas_1pctCO2_ltm_gcm_CMIP5_CCSM4_OA.nc
+![](CountryOutline.png)

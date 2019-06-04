@@ -1,14 +1,18 @@
-#Alpha (AE/PE)
+#Surface Air Temperature
 
-Alpha (AE/PE) was read from "cru10min30_bio.nc" and contains: 
+This is the outline that was used to shows the countries
 
-class       : RasterLayer  
-dimensions  : 360, 720, 259200  (nrow, ncol, ncell)  
-resolution  : 0.5, 0.5  (x, y) 
-extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)  
-coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0  
-data source : /Users/jacobmaurer/Documents/College/Geography490/Projects/cru10min30_bio.nc
-names       : Priestley.Taylor..alpha..parameter..AE.PE.  
-zvar        : mipt  
+![](CountryOutline.png)
 
-![](alpha.png)
+This is the coastal outlines of the countries
+
+![](CoastOutline.png)
+
+This is a Surface Air Temperature look at one percent Co2 levels
+
+![](1pctCo2.png)
+
+This is the monthly look at one percent Co2 SAT
+
+![](SAT_tmp_ltm.png)
+![](SAT2_tmp_ltm.png)
