@@ -1,7 +1,8 @@
 #Surface Air Temperature
 
+#introduction
 This is the data used for the 1 x Co2
-```{r plot_data0}
+```{r plot_data0, message=FALSE}
 
 library(ggplot2)
 library(ncdf4)
@@ -27,17 +28,8 @@ shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490/
 ```
 
 
-This is the data for the 4 x Co2
+#This is the data for the 4 x Co2
 ```{r plot_data1}
-
-library(ggplot2)
-library(ncdf4)
-library(zoo)
-library(RColorBrewer)
-library(raster)
-library(rasterVis)
-library(sf)
-library(ncdf.tools)
 
 nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
 #nc_path <- "/Users/bartlein/Projects/ESSD/data/nc_files/"
@@ -54,7 +46,7 @@ shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490/
 ```
 
 
-
+# Country Outlines
 This is the outline that was used to shows the countries in the world
 ```{r plot_data2}
 
@@ -69,7 +61,7 @@ plot(world_outline, col="gray80", lwd=1)
 
 
 
-
+## Coastal Outline
 This is the coastal outlines of the countries
 ```{r plot_data3}
 
@@ -138,3 +130,15 @@ dev.off()
 ```
 
 ![](SAT2_tmp_ltm.png)
+
+
+```{r plot_data7}
+SAT_tmp_ltm_diff <- SAT_tmp_ltm2 - SAT_tmp_ltm
+pngfile <- "SAT_tmp_ltm_diff.png"
+png(pngfile, width=729, height=729) # open the file
+cutpts <- c(-10,-5,-2,-1,-0.5,0,0.5,1,2,5,10)
+plt <- levelplot(SAT_tmp_ltm_diff , at=cutpts, cuts=11, pretty=T, 
+                 col.regions=rev((brewer.pal(10,"RdBu"))))
+plt + latticeExtra::layer(sp.lines(coast_outline, col="black", lwd=0.5))
+dev.off()
+```
