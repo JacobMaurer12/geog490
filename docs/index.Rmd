@@ -1,5 +1,4 @@
 #Surface Air Temperature
-
 #introduction
 This is the data used for the 1 x Co2
 ```{r plot_data0, message=FALSE}
@@ -12,6 +11,7 @@ library(raster)
 library(rasterVis)
 library(sf)
 library(ncdf.tools)
+library(rgdal)
 
 nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
 #nc_path <- "/Users/bartlein/Projects/ESSD/data/nc_files/"
