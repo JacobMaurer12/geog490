@@ -97,22 +97,6 @@ plt + latticeExtra::layer(sp.lines(world_outline, col="gray30", lwd=0.5))
 ```
 
 
-This is the difference between the 4x C02 and the present day
-```{r plot_data7}
-SAT_tmp_ltm_diff <- SAT_tmp_ltm2 - SAT_tmp_ltm
-pngfile <- "SAT_tmp_ltm_diff.png"
-png(pngfile, width=729, height=729) # open the file
-cutpts <- c(-10,-5,-2,-1,-0.5,0,0.5,1,2,5,10)
-plt <- levelplot(SAT_tmp_ltm_diff , at=cutpts, cuts=11, pretty=T, 
-                 col.regions=rev((brewer.pal(10,"RdBu"))))
-plt + latticeExtra::layer(sp.lines(coast_outline, col="black", lwd=0.5))
-dev.off()
-```
-
-![](SAT_tmp_ltm2.png)
-
-
-
 This is the monthly look at one percent Co2 SAT
 ```{r plot_data5}
 
@@ -155,3 +139,17 @@ dev.off()
 
 ![](SAT2_tmp_ltm.png)
 
+
+This is the difference between the 4x C02 and the present day
+```{r plot_data7}
+SAT_tmp_ltm_diff <- SAT_tmp_ltm2 - SAT_tmp_ltm
+pngfile <- "SAT_tmp_ltm_diff.png"
+png(pngfile, width=729, height=729) # open the file
+cutpts <- c(-10,-5,-2,-1,-0.5,0,0.5,1,2,5,10)
+plt <- levelplot(SAT_tmp_ltm_diff , at=cutpts, cuts=11, pretty=T, 
+                 col.regions=rev((brewer.pal(10,"RdBu"))))
+plt + latticeExtra::layer(sp.lines(coast_outline, col="black", lwd=0.5))
+dev.off()
+```
+
+![](SAT_tmp_ltm_diff.png)
