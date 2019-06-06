@@ -1,6 +1,7 @@
 #Surface Air Temperature
-#introduction
-This is the data used for the 1 x Co2
+
+##introduction
+This is the data used for the presesnt day surface air temperatue for the world. The library is all of the installed packages used in this report.
 ```{r, plot_data0, message=FALSE}
 
 library(ggplot2)
@@ -26,7 +27,7 @@ shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490/
 ```
 
 
-#This is the data for the 4 x Co2
+##This is the data for the 4 x Co2 data in this project.
 ```{r, plot_data1}
 
 nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
@@ -42,8 +43,8 @@ shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490/
 ```
 
 
-# Country Outlines
-This is the outline that was used to shows the countries in the world
+##Country Outlines
+This is the outline that was used to shows the countries in the world. This was created by adding a world shapefile and seting the geometry of the projection, and adding a color. 
 ```{r, plot_data2}
 
 shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
@@ -58,7 +59,7 @@ plot(world_outline, col="gray80", lwd=1)
 
 
 ## Coastal Outline
-This is the coastal outlines of the countries
+This is the coastal outlines of the countries to allow for plots that look more pleasing. This allows for the plots to be shown without a lot of lines in it like the country outline above. 
 ```{r, plot_data3}
 
 coast_shp_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
@@ -74,8 +75,8 @@ plot(coast_outline, col="gray50", lwd=1)
 ```
 
 
-
-This is a Surface Air Temperature look at present day
+##Present Day Surface Air Temperature
+This is a Surface Air Temperature model that is representing present day. The blue is a decrese in temperature and the red is an increase.
 ```{r, plot_data4}
 
 mapTheme <- rasterTheme(region=rev(brewer.pal(8,"RdBu")))
@@ -83,8 +84,8 @@ plt <- levelplot(tas_piControl, margin=F, par.settings=mapTheme)
 plt + latticeExtra::layer(sp.lines(world_outline, col="gray30", lwd=0.5))
 ```
 
-
-This is 4x C02 
+##4 X C02 Surface Air Temperature
+This is a similar map as above, but it shows the 4 x C02 levels for the world.
 ```{r, plot_data5}
 
 mapTheme <- rasterTheme(region=rev(brewer.pal(8,"RdBu")))
@@ -92,8 +93,8 @@ plt <- levelplot(tas_4xC02, margin=F, par.settings=mapTheme)
 plt + latticeExtra::layer(sp.lines(world_outline, col="gray30", lwd=0.5))
 ```
 
-
-This is the monthly look at piControl, or present day
+##Monthly plot of present day SAT
+To show how the temperature will change over the years, The code below will plot monthly surface air temperatures.
 ```{r, plot_data6}
 
 monthly_piControl <- stack(nc_file, varname = "tas_ltm")
@@ -114,6 +115,9 @@ dev.off()
 
 
 ![](monthly_piControl.png)
+
+##Monthly plot of 4 x C02 SAT
+This is a monthly plot of the 4 x C02 level to compare temperature throughout the year. 
 ```{r, plot_data7}
 
 monthly_4xC02 <- stack(nc_file, varname = "tas_ltm")
@@ -135,8 +139,8 @@ dev.off()
 
 ![](monthly_4xC02.png)
 
-
-This is the difference between the 4x C02 and the present day
+##Difference Map
+This is the difference between the 4x C02 and the present day. The hole in the mid-Atlantic Ocean is a hole in the ozone layer that is cooler than everywhere else. As expected, the world is hotter.
 ```{r, plot_data8}
 monthly_diff <- monthly_4xC02 - monthly_piControl
 pngfile <- "monthly_diff.png"
