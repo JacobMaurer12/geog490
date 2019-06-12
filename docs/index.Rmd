@@ -108,7 +108,7 @@ dev.off()
 
 
 ##Monthly plot of 4 x C02 SAT
-**This is a monthly plot of the 4 x C02 level to compare temperature throughout the year. As with the comparison of the whole year map, these are warmer and have less blue occuring on the map. This map shows a good representation of where the surface air temperature will be affecting first, and from the plots below, you can see an increase in temperature around the Indian Ocean and a small chunk of the Eastern Pacific Ocean. You can also see areas in the South Pole that were white (ice), but are now turning into blue with an increased temperture.This will allow for scientists to see areas that will be affected and allow for them to focus on certain regions.**
+**This is a monthly plot of the 4 x CO2 level to compare temperature throughout the year. As with the comparison of the whole year map, these are warmer and have less blue occuring on the map. This map shows a good representation of where the surface air temperature will be affecting first, and from the plots below, you can see an increase in temperature around the Indian Ocean and a small chunk of the Eastern Pacific Ocean. You can also see areas in the South Pole that were white (ice), but are now turning into blue with an increased temperture.This will allow for scientists to see areas that will be affected and allow for them to focus on certain regions.**
 
 ```{r, plot_data7}
 nc_path <- "/Users/jacobmaurer/Documents/College/Geography490/Projects/geog490//"
@@ -133,7 +133,7 @@ dev.off()
 
 
 ##Difference Map
-**This is the difference between the 4x C02 and the present day monthly maps. As expected, the world is hotter, but there's a chunk of the mid-Atlantic Ocean that has a hole. This hole is a hole in the ozone layer that is cooler than everywhere else due to no ozone being present. This ozone depletion has been occuring since the 1970's, and consists of "a steady lowering of about four percent in the total amount of ozone in Earth's atmosphere, and a much larger springtime decrease in stratospheric ozone around Earth's polar regions." Being able to map these features allows for scientists to watch how the ozone hole is changin over time, and weather it's increaseing or decreasing.**
+**This is the difference map showing the 4x CO2 surface air temperature and the present day monthly surface air temperature maps. As expected, the world is hotter, but there's a chunk of the mid-Atlantic Ocean that has a hole. This hole is a hole in the ozone layer that is cooler than everywhere else due to no ozone being present. This ozone depletion has been occuring since the 1970's, and consists of "a steady lowering of about four percent in the total amount of ozone in Earth's atmosphere, and a much larger springtime decrease in stratospheric ozone around Earth's polar regions." Being able to map these features allows for scientists to watch how the ozone hole is changin over time, and weather it's increaseing or decreasing.**
 
 ```{r, plot_data8}
 monthly_diff <- monthly_4xC02 - monthly_piControl
